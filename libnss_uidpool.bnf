@@ -1,0 +1,15 @@
+#
+# BNF-like grammar for the libnss_uidpool.conf
+#
+
+<exp> ::= <key> <equalop> <value>
+
+<key> ::= "USERNAME_PREFIX" 
+        | "UID_MIN" 
+        | "UID_MAX" 
+        | "DEFAULT_GID"
+        | "SHELL"
+        | "HOME"
+
+<equalop> ::= "="
+<value> ::= <string> | <quoted-string>
