@@ -27,11 +27,8 @@
 
 enum nss_status _nss_uidpool_getpwuid_r(uid_t, struct passwd *, char *, size_t, int *);
 enum nss_status _nss_uidpool_getpwnam_r(const char *, struct passwd *, char *, size_t, int *);
-char * strstrip(char * string, char * trimchars);
-int  fileparser(void);
 
 #define CONFIG_FILE "/etc/libnss_uidpool.conf"
-
 
 /* Some safe defaults first in case we don't have a config file */
 char *USERNAME_PREFIX = "pool";
@@ -42,7 +39,7 @@ int UID_MIN = 10001;
 int UID_MAX = 10101;
 int DEFAULT_GID = 65534;
 
-char *strstrip(char *s, char *t)
+static char *strstrip(char *s, char *t)
 {
 	/*
 	 * This function returns a pointer to a substring of the s, with all
@@ -64,7 +61,7 @@ char *strstrip(char *s, char *t)
 	return cleaned;
 }
 
-int fileparser(void)
+static int parse_config(void)
 {
 	FILE *fp;
 	size_t len = 0;
@@ -140,7 +137,7 @@ enum nss_status _nss_uidpool_getpwuid_r(uid_t uid, struct passwd *result, char *
 {
 	*errnop = 0;
 
-	fileparser();
+	parse_config();
 
 	/* the last check is a paranoid safeguard against returning root */
 	if (uid < UID_MIN+1 || uid >= UID_MAX || uid == 0) {
@@ -183,7 +180,7 @@ enum nss_status _nss_uidpool_getpwnam_r(const char *name, struct passwd *result,
 {
 	*errnop = 0;
 
-	fileparser();
+	parse_config();
 
 	if (strncmp(name, USERNAME_PREFIX, strlen(USERNAME_PREFIX)) != 0) {
 		return NSS_STATUS_NOTFOUND;
