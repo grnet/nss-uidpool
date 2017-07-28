@@ -1,0 +1,15 @@
+Source: libnss-uidpool
+Section: admin
+Priority: extra
+Maintainer: GRNET NOC servers team <servers@noc.grnet.gr>
+Build-Depends: debhelper (>= 8)
+Standards-Version: 3.9.6
+
+Package: libnss-uidpool
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: nss module to have a pool of a predefined number of users
+ This Name Service Switch (NSS) module creates a pool of a predefined number of
+ users, say pool1-pool999. It can be used when wanting to separate a number of
+ processes into separate users. It was primarily created to run KVM virtual
+ machines each with a different user.

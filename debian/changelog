@@ -1,0 +1,11 @@
+libnss-uidpool (2-1) unstable; urgency=medium
+
+  * Build latest commit
+
+ -- Alexandros Afentoulis <alexaf@noc.grnet.gr>  Thu, 27 Jul 2017 11:13:24 +0300
+
+libnss-uidpool (1-1) unstable; urgency=low
+
+  * Initial release.
+
+ -- Faidon Liambotis <paravoid@debian.org>  Wed, 21 Sep 2011 18:22:47 +0300
