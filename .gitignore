@@ -1,3 +1,4 @@
 .*.swp
 *.so.2
 *.o
+debian/libnss-uidpool*
